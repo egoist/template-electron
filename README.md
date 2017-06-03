@@ -4,7 +4,7 @@
 
 ## Features
 
-- Run app in background, i.e. click `x` will only hide the window instead of completely quit it.
+- Run app in background, i.e. click `x` will only hide the window and reopen it will not trigger reloading.
 - No build process, made simple.
 
 ## Usage
