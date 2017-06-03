@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "<%= name %>-root",
+  "version": "0.0.0-this-does-not-matter",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "install-app-deps && rm -rf app/package-lock.json",
+    "test": "echo lol",
+    "app": "electron app/index.js",
+    "dist": "npm run dist:mac && npm run dist:deb && npm run dist:win",
+    "dist:mac": "build --mac",
+    "dist:linux": "build --linux deb tar.xz",
+    "dist:win": "build --win --ia32"
+  },
+  "build": {
+    "appId": "com.<%= username %>.<%= name %>",
+    "productName": "<%= name[0].toUpperCase() + name.slice(1) %>",
+    "asar": true,
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false
+    },
+    "linux": {
+      "category": "public.app-category.developer-tools"
+    }
+  },
+  "devDependencies": {
+    "electron": "^1.6.10",
+    "electron-builder": "^18.0.1",
+    "electron-builder-squirrel-windows": "^18.0.0"
+  }
+}
