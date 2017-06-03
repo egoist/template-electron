@@ -10,6 +10,11 @@ module.exports = {
       message: 'How would you descripe the new project?',
       default: `my ${superb()} project`
     },
+    distribute: {
+      message: 'Do you want to distribute the app using electron-builder?',
+      default: true,
+      type: 'confirm'
+    },
     username: {
       message: 'What is your GitHub username?',
       default: ':gitUser:',
@@ -22,14 +27,14 @@ module.exports = {
     },
     website: {
       message: 'The URL of your website?',
-      default({username}) {
+      default({ username }) {
         return `github.com/${username}`
       },
       store: true
     }
   },
   move: {
-    'gitignore': '.gitignore'
+    gitignore: '.gitignore'
   },
   showTip: true,
   gitInit: true,

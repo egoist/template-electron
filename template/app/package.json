@@ -1,6 +1,7 @@
 {
   "name": "<%= name %>",
   "productName": "<%= name[0].toUpperCase() + name.slice(1) %>",
+  "description": "<%= description %>",
   "author": {
     "name": "<%= username %>",
     "email": "<%= email %>"
