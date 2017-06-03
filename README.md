@@ -27,8 +27,6 @@ sao egoist/template-electron my-project
 
 ### From npm
 
-npm package is not ready yet, you can generate project from git for now.
-
 ```bash
 sao electron my-project
 ```
