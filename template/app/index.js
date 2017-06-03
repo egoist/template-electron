@@ -29,7 +29,6 @@ function createMainWindow() {
 
   const win = new BrowserWindow({
     title: app.getName(),
-    show: false,
     x: lastWindowState.x,
     y: lastWindowState.y,
     width: lastWindowState.width,
@@ -39,8 +38,12 @@ function createMainWindow() {
   // if (process.platform === 'darwin') {
   //   win.setSheetOffset(40)
   // }
-
-  win.loadURL(`file://${path.join(__dirname, 'renderer', 'index.html')}`)
+  <% if (isLoadURL) { %>
+  const url = '<%= loadURL %>'
+  <% } else { %>
+  const url = `file://${path.join(__dirname, 'renderer', 'index.html')}`
+  <% } %>
+  win.loadURL(url)
 
   win.on('close', e => {
     if (!isQuitting) {
@@ -64,12 +67,6 @@ function createMainWindow() {
 app.on('ready', () => {
   Menu.setApplicationMenu(appMenu)
   mainWindow = createMainWindow()
-
-  const page = mainWindow.webContents
-
-  page.on('dom-ready', () => {
-    mainWindow.show()
-  })
 })
 
 app.on('activate', () => {

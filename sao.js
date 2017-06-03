@@ -11,9 +11,19 @@ module.exports = {
       default: `my ${superb()} project`
     },
     distribute: {
-      message: 'Do you want to distribute the app using electron-builder?',
+      message: 'Do you want to distribute the app using electron-builder',
       default: true,
       type: 'confirm'
+    },
+    isLoadURL: {
+      message: 'Use this app to load a URL instead of local file',
+      default: false,
+      type: 'confirm'
+    },
+    loadURL: {
+      message: 'Enter the URL',
+      required: true,
+      when: 'isLoadURL'
     },
     username: {
       message: 'What is your GitHub username?',
@@ -35,6 +45,9 @@ module.exports = {
   },
   move: {
     gitignore: '.gitignore'
+  },
+  filters: {
+    'app/renderer/**': '!isLoadURL'
   },
   showTip: true,
   gitInit: true,
