@@ -1,4 +1,4 @@
-# template-electron
+# template-electron <sup>[![version](https://v.egoist.moe/npm/template-electron.svg)](https://npmjs.com/package/template-electron)</sup>
 
 
  <img src="https://ooo.0o0.ooo/2017/06/04/5932e1555343c.gif" width="600" />
