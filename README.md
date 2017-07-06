@@ -1,13 +1,12 @@
 # template-electron
 
- 🚧 **Early Stage**
 
  <img src="https://ooo.0o0.ooo/2017/06/04/5932e1555343c.gif" width="600" />
 
 ## Features
 
 - Run app in background, i.e. click `x` will only hide the window and reopen it will not trigger reloading.
-- No build process, made simple.
+- No build process, made simple (webpack support is optional)
 
 ## Usage
 

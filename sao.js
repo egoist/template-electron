@@ -15,15 +15,21 @@ module.exports = {
       default: true,
       type: 'confirm'
     },
+    webpack: {
+      message: 'Do you want to use webpack to bundle renderer process',
+      default: false,
+      type: 'confirm'
+    },
     isLoadURL: {
       message: 'Use this app to load a URL instead of local file',
       default: false,
-      type: 'confirm'
+      type: 'confirm',
+      when: answers => !answers.webpack
     },
     loadURL: {
       message: 'Enter the URL',
       required: true,
-      when: 'isLoadURL'
+      when: answers => answers.isLoadURL
     },
     username: {
       message: 'What is your GitHub username?',
@@ -47,7 +53,9 @@ module.exports = {
     gitignore: '.gitignore'
   },
   filters: {
-    'app/renderer/**': '!isLoadURL'
+    'app/renderer/**': '!isLoadURL && !webpack',
+    'poi.config.js': 'webpack',
+    'src/**': 'webpack'
   },
   showTip: true,
   gitInit: true,

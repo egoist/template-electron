@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "cd app && npm install && rm -rf package-lock.json",
-    "test": "echo lol",
+    "test": "echo lol"<% if (webpack) { %>,
+    "build": "poi build",
+    "dev": "poi"<% } %>,
     "app": "electron app/index.js"<% if (distribute) { %>,
     "dist": "npm run dist:mac && npm run dist:deb && npm run dist:win",
     "dist:mac": "build --mac",

@@ -3,12 +3,20 @@ const fs = require('fs')
 const { app, BrowserWindow, Menu } = require('electron')
 const appMenu = require('./menu')
 const config = require('./config')
+const pkg = require('./package')
 
 require('electron-debug')()
 require('electron-context-menu')()
 
+const isDev = typeof process.env.NODE_ENV === 'string'
+  ? (process.env.NODE_ENV === 'development')
+  : require('electron-is-dev')
+
 let mainWindow
 let isQuitting = false
+
+// Set title of the app that will use shown in window titlebar
+app.setName(pkg.productName)
 
 const isAlreadyRunning = app.makeSingleInstance(() => {
   if (mainWindow) {
@@ -35,13 +43,10 @@ function createMainWindow() {
     height: lastWindowState.height
   })
 
-  // if (process.platform === 'darwin') {
-  //   win.setSheetOffset(40)
-  // }
   <% if (isLoadURL) { %>
   const url = '<%= loadURL %>'
   <% } else { %>
-  const url = `file://${path.join(__dirname, 'renderer', 'index.html')}`
+  const url = isDev ? 'http://localhost:4000' : `file://${path.join(__dirname, 'renderer', 'index.html')}`
   <% } %>
   win.loadURL(url)
 

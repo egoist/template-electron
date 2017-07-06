@@ -6,6 +6,9 @@
     "url": "egoist/template-electron",
     "type": "git"
   },
+  "scripts": {
+    "test": "ava"
+  },
   "author": "egoist <0x142857@gmail.com> (https://github.com/egoist)",
   "license": "MIT",
   "files": [
@@ -14,5 +17,9 @@
   ],
   "dependencies": {
     "superb": "^1.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.20.0",
+    "sao": "^0.19.8"
   }
 }
