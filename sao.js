@@ -7,7 +7,7 @@ module.exports = {
       default: ':folderName:'
     },
     description: {
-      message: 'How would you descripe the new project?',
+      message: 'How would you describe the new project?',
       default: `my ${superb()} project`
     },
     distribute: {
