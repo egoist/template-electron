@@ -9,6 +9,7 @@
     "test": "echo lol"<% if (webpack) { %>,
     "build": "poi build",
     "dev": "poi"<% } %>,
+    "both": "concurrently \"npm run dev\" \"npm run app\" -k",
     "app": "electron app/index.js"<% if (distribute) { %>,
     "dist": "npm run dist:mac && npm run dist:deb && npm run dist:win",
     "dist:mac": "build --mac",
@@ -33,6 +34,7 @@
     }
   },<% } %>
   "devDependencies": {
+    "concurrently": "^3.5.0",
     "electron": "^1.6.10"<% if (distribute) { %>,
     "electron-builder": "^18.0.1",
     "electron-builder-squirrel-windows": "^18.0.0"<% } %>
