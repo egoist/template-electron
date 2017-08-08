@@ -10,12 +10,11 @@ module.exports = {
   // Electron can only load from relative path
   homepage: './',
   // Exclude built-in Electron modules from bundle
-  webpack(config) {
-    config.target = 'electron-renderer'
-    config.node = {
-      __filename: false,
-      __dirname: false
-    }
+  extendWebpack(config) {
+    config.target('electron-renderer')
+    config.node
+      .set('__filename', false)
+      .set('__dirname', false)
     return config
   }
 }
