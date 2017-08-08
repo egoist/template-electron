@@ -38,6 +38,7 @@
     "electron": "^1.6.10"<% if (distribute) { %>,
     "electron-builder": "^18.0.1",
     "electron-builder-squirrel-windows": "^18.0.0"<% } %><% if (webpack) { %>,
+    "html-webpack-harddisk-plugin": "^0.1.0",
     "poi": "^9.2.0"<% } %>
   }
 }
