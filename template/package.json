@@ -37,6 +37,7 @@
     "concurrently": "^3.5.0",
     "electron": "^1.6.10"<% if (distribute) { %>,
     "electron-builder": "^18.0.1",
-    "electron-builder-squirrel-windows": "^18.0.0"<% } %>
+    "electron-builder-squirrel-windows": "^18.0.0"<% } %><% if (webpack) { %>,
+    "poi": "^9.2.0"<% } %>
   }
 }
