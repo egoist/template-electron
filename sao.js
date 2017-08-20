@@ -57,7 +57,9 @@ module.exports = {
     'poi.config.js': 'webpack',
     'src/**': 'webpack'
   },
-  showTip: true,
-  gitInit: true,
-  installDependencies: true
+  async post(ctx) {
+    ctx.gitInit()
+    ctx.yarnInstall()
+    ctx.showTip()
+  }
 }
