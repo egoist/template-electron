@@ -10,12 +10,12 @@ By default we don't use a bundler, so files for renderer process are populated a
 
 And you will get 3 addtional npm scripts:
 
-- `npm run dev`: Run the dev server which will be available at `http://localhost:4000` by default.
-- `npm run build`: Bundle `src/index.js` into `app/renderer` folder.
-- `npm run both`: Run `npm run dev` and `npm run app` concurrently.
+- `npm run renderer`: Run the dev server which will be available at `http://localhost:4000` by default.
+- `npm run main`: Bundle `src/index.js` into `app/renderer` folder.
+- `npm run dev`: Run `npm run main` and `npm run renderer` concurrently.
 
-In development, you only need to run `npm run app` and `npm run dev` side by side. Or do yourself a favor using `npm run both` which uses `concurrenly` so that you only need to open one terminal tab.
+In development, you only need to run `npm run main` and `npm run renderer` side by side. Or do yourself a favor using `npm run dev` which runs the above npm scripts `concurrenly` so that you only need to open one terminal tab.
 
-**Note that you need to re-run `npm run app` or `npm run both` after update the code of main process.**
+**Note that you need to re-run `npm run main` or `npm run dev` after update the code of main process.**
 
-If you're running `npm run both`, you may need to refresh the opened window when `npm run dev` is ready since it will take seconds to start.
+If you're running `npm run dev`, you may need to refresh electron window when `npm run renderer` is ready since webpack might take seconds or more to finish bundling for the first time.
