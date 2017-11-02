@@ -12,7 +12,7 @@ And you will get 4 addtional npm scripts:
 
 - `npm run renderer`: Run the dev server then your renderer process will be available at `http://localhost:4000`. (You can't visit it directly via browser though, instead we load this URL in the Electron main process during development)
 - `npm run build`： Build the source files of renderer process to `app/renderer` directory.
-- `npm run main`: Run Electron app (main process) will will load `http://localhost:4000` in development or `app/renderer/index.html` in production.
+- `npm run main`: Run Electron app (main process) to load `http://localhost:4000` in development or `app/renderer/index.html` in production.
 - `npm run dev`: Run `npm run main` and `npm run renderer` concurrently.
 
 In development, you only need to run `npm run main` and `npm run renderer` side by side. Or do yourself a favor using `npm run dev` which runs the above npm scripts `concurrenly` so that you only need to open one terminal tab.
