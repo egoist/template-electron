@@ -46,7 +46,7 @@ function createMainWindow() {
   <% if (isLoadURL) { %>
   const url = '<%= loadURL %>'
   <% } else { %>
-  const url = isDev ? 'http://localhost:4000' : `file://${path.join(__dirname, 'renderer', 'index.html')}`
+  const url = `file://${path.join(__dirname, 'renderer', 'index.html')}`
   <% } %>
   win.loadURL(url)
 
