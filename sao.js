@@ -1,4 +1,17 @@
+const { join } = require('path')
 const superb = require('superb')
+const glob = require('glob')
+
+const rootDir = __dirname
+
+const move = (from, to = '') => {
+  const result = {}
+  const options = { cwd: join(rootDir, 'template', from), nodir: true, dot: true }
+  for (const file of glob.sync(`**`, options)) {
+    result[join(from, file)] = join(to, file)
+  }
+  return result
+}
 
 module.exports = {
   prompts: {
@@ -15,16 +28,30 @@ module.exports = {
       default: true,
       type: 'confirm'
     },
-    webpack: {
-      message: 'Do you want to use webpack to bundle renderer process',
+    bundler: {
+      message: 'Do you want to use a bundler',
       default: false,
-      type: 'confirm'
+      choices: [
+        {
+          name: 'No, move on',
+          value: false
+        },
+        {
+          name: 'Poi',
+          value: 'poi'
+        },
+        {
+          name: 'Parcel',
+          value: 'parcel'
+        }
+      ],
+      type: 'list'
     },
     isLoadURL: {
       message: 'Use this app to load a URL instead of local file',
       default: false,
       type: 'confirm',
-      when: answers => !answers.webpack
+      when: answers => answers.bundler === false
     },
     loadURL: {
       message: 'Enter the URL',
@@ -49,13 +76,17 @@ module.exports = {
       store: true
     }
   },
-  move: {
-    gitignore: '.gitignore'
+  move({ bundler }) {
+    const src = bundler === 'poi' ? 'src-poi' : 'src-parcel'
+    return Object.assign({
+      gitignore: '.gitignore'
+    }, move(src, 'src'))
   },
   filters: {
-    'app/renderer/**': '!isLoadURL && !webpack',
-    'poi.config.js': 'webpack',
-    'src/**': 'webpack'
+    'app/renderer/**': '!isLoadURL && bundler === false',
+    'poi.config.js': 'bundler === "poi"',
+    'src-parcel/**': 'bundler === "parcel"',
+    'src-poi/**': 'bundler === "poi"'
   },
   async post(ctx) {
     ctx.gitInit()

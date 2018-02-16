@@ -8,7 +8,7 @@
 ## Features
 
 - Run app in background, i.e. click `x` will only hide the window and reopen it will not trigger reloading.
-- No build process, made simple (webpack support is optional)
+- No build process, made simple (webpack/parcel support is optional)
 
 ## Usage
 

@@ -6,9 +6,11 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "cd app && npm install && rm -rf package-lock.json",
-    "test": "echo lol"<% if (webpack) { %>,
+    "test": "echo lol"<% if (bundler) { %>,<% if (bundler === 'poi') { %>
     "build": "poi build",
-    "renderer": "poi",
+    "renderer": "poi",<% } else if (bundler ==='parcel') { %>
+    "build": "parcel build src/index.html --target electron -d app/renderer --public-url ./",
+    "renderer": "parcel src/index.html --target electron --port 4000",<% } %>
     "dev": "concurrently \"npm run main\" \"npm run renderer\" -k"<% } %>,
     "main": "electron app/index.js"<% if (distribute) { %>,
     "dist": "npm run dist:mac && npm run dist:deb && npm run dist:win",
@@ -37,7 +39,9 @@
     "concurrently": "^3.5.0",
     "electron": "^1.6.10"<% if (distribute) { %>,
     "electron-builder": "^18.0.1",
-    "electron-builder-squirrel-windows": "^18.0.0"<% } %><% if (webpack) { %>,
-    "poi": "^9.2.0"<% } %>
+    "electron-builder-squirrel-windows": "^18.0.0"<% } %><% if (bundler === 'poi') { %>,
+    "poi": "^9.2.0"<% } else if (bundler === 'parcel') { %>,
+    "parcel-bundler": "^1.6.0"
+    <% } %>
   }
 }
