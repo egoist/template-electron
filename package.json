@@ -1,6 +1,6 @@
 {
   "name": "template-electron",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Scaffold out an Electron app.",
   "repository": {
     "url": "egoist/template-electron",
