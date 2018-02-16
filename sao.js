@@ -88,9 +88,11 @@ module.exports = {
     'src-parcel/**': 'bundler === "parcel"',
     'src-poi/**': 'bundler === "poi"'
   },
-  async post(ctx) {
-    ctx.gitInit()
-    ctx.yarnInstall()
-    ctx.showTip()
+  async post({ gitInit, yarnInstall, log, chalk, pm }) {
+    gitInit()
+    yarnInstall()
+    log.info(`To develop the app: ${chalk.cyan(pm)} run dev`)
+    log.info(`To build for production: ${chalk.cyan(pm)} run build`)
+    log.info(`To distribute: ${chalk.cyan(pm)} run dist`)
   }
 }

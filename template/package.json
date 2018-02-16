@@ -11,12 +11,9 @@
     "renderer": "poi",<% } else if (bundler ==='parcel') { %>
     "build": "parcel build src/index.html --target electron -d app/renderer --public-url ./",
     "renderer": "parcel src/index.html --target electron --port 4000",<% } %>
-    "dev": "concurrently \"npm run main\" \"npm run renderer\" -k"<% } %>,
+    "dev": "run-p main renderer"<% } %>,
     "main": "electron app/index.js"<% if (distribute) { %>,
-    "dist": "npm run dist:mac && npm run dist:deb && npm run dist:win",
-    "dist:mac": "build --mac",
-    "dist:linux": "build --linux deb tar.xz",
-    "dist:win": "build --win --ia32"<% } %>
+    "dist": "build"<% } %>
   },<% if (distribute) { %>
   "build": {
     "appId": "com.<%= username %>.<%= name %>",
@@ -35,8 +32,8 @@
       "category": "public.app-category.developer-tools"
     }
   },<% } %>
-  "devDependencies": {
-    "concurrently": "^3.5.0",
+  "devDependencies": {<% if (bundler) { %>
+    "npm-run-all": "^4.1.2",<% } %>
     "electron": "^1.6.10"<% if (distribute) { %>,
     "electron-builder": "^18.0.1",
     "electron-builder-squirrel-windows": "^18.0.0"<% } %><% if (bundler === 'poi') { %>,
