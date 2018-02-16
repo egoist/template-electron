@@ -26,7 +26,8 @@ module.exports = {
     distribute: {
       message: 'Do you want to distribute the app using electron-builder',
       default: true,
-      type: 'confirm'
+      type: 'confirm',
+      store: true
     },
     bundler: {
       message: 'Do you want to use a bundler',
@@ -45,7 +46,8 @@ module.exports = {
           value: 'parcel'
         }
       ],
-      type: 'list'
+      type: 'list',
+      store: true
     },
     isLoadURL: {
       message: 'Use this app to load a URL instead of local file',
@@ -88,9 +90,12 @@ module.exports = {
     'src-parcel/**': 'bundler === "parcel"',
     'src-poi/**': 'bundler === "poi"'
   },
-  async post({ gitInit, yarnInstall, log, chalk, pm }) {
+  async post({ gitInit, yarnInstall, log, chalk, pm, isNewFolder, folderName }) {
     gitInit()
     yarnInstall()
+    if (isNewFolder) {
+      log.info(`To get started: ${chalk.cyan('cd')} ${folderName}`)
+    }
     log.info(`To develop the app: ${chalk.cyan(pm)} run dev`)
     log.info(`To build for production: ${chalk.cyan(pm)} run build`)
     log.info(`To distribute: ${chalk.cyan(pm)} run dist`)

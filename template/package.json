@@ -11,7 +11,7 @@
     "renderer": "poi",<% } else if (bundler ==='parcel') { %>
     "build": "parcel build src/index.html --target electron -d app/renderer --public-url ./",
     "renderer": "parcel src/index.html --target electron --port 4000",<% } %>
-    "dev": "run-p main renderer"<% } %>,
+    "dev": "run-p main renderer -r"<% } %>,
     "main": "electron app/index.js"<% if (distribute) { %>,
     "dist": "build"<% } %>
   },<% if (distribute) { %>
