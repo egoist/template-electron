@@ -19,7 +19,9 @@ test('poi', async t => {
 test('parcel', async t => {
   const res = await sao.mockPrompt(template, {
     bundler: 'parcel',
-    description: 'mock'
+    description: 'mock',
+    username: 'username',
+    name: 'project'
   })
   t.snapshot(res.fileList)
   t.snapshot(res.fileContents('package.json'), 'package.json')
